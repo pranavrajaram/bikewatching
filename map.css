@@ -1,0 +1,79 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center;     /* Center vertically */
+  box-sizing: border-box;
+}
+   
+#map {
+  position: relative; /* Ensure child elements like SVG can be positioned properly */
+  width: 100%;    
+  height: 100vh;   
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+#map svg {
+  position: absolute;  
+  z-index: 1;        
+  width: 100%;
+  height: 100%;
+  pointer-events: none; 
+  
+}
+
+
+circle {
+  pointer-events: auto;
+}
+
+
+em {
+  font-style: italic;
+  color: gray;
+}
+
+#map circle, .legend > div {
+    --color-departures: steelblue;
+    --color-arrivals: darkorange;
+    --color: color-mix(
+        in oklch,
+        var(--color-departures) calc(100% * var(--departure-ratio)),
+        var(--color-arrivals)
+    );
+    fill: var(--color);
+}
+
+.legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-block: 20px;
+    font-family: Arial, sans-serif;
+    align-items: center; /* Center items vertically */
+}
+
+.legend-title {
+    color: #888; /* Lighter gray */
+
+    margin-right: 10px; /* Space between title and items */
+}
+
+.legend > div {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+}
+
+.legend > div::before {
+    content: '';
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+    border-radius: 50%;
+    background-color: var(--color);
+}
